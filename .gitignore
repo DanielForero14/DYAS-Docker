@@ -1,0 +1,13 @@
+# Datos de Redis generados por Docker Compose
+data/
+friendlyhello/data/
+
+# Python
+__pycache__/
+*.pyc
+
+# Variables de entorno con claves
+.env
+
+# Evidencias temporales
+*.tmp

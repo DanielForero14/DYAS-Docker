@@ -1,0 +1,22 @@
+services:
+  web:
+    build: .
+    # Ejercicio 1 de la Parte 3: para usar la imagen publicada en Docker Hub, comenta "build: ." y activa:
+    # image: fore777/friendlyhello:0.1.0
+    # Ejercicio 2: usa la imagen de un compañero:
+    # image: <usuario-companero>/friendlyhello:0.1.0
+    ports:
+      - "4000:8000"
+    depends_on:
+      redis:
+        condition: service_healthy
+  redis:
+    image: redis:8.8
+    command: redis-server --appendonly yes
+    volumes:
+      - ./data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
